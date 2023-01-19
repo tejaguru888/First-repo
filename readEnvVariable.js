@@ -1,0 +1,1 @@
+console.log("Hello ",process.env.USERNAME); // $env:USERNAME="Ravi"
