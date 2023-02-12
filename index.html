@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container" id="sb-container"></div>
+    <button id="change">change color</button>
+    <button id="add">add child</button>
+    <button id="remove">remove child</button>
+
+    <script>
+        let colors=['blue', 'yellow', 'green']
+        let btn = document.getElementById('change')
+
+        btn.addEventListener('click', function(){
+            var random = colors[Math.floor(Math.random()*colors.length)]
+            let container = document.getElementById('sb-container')
+            container.style.background = random
+        })
+        let add = document.getElementById('add')
+        var squarediv = document.createElement('div')
+        squarediv.style.cssText = "width:100px; height:100px; background: red"
+        add.addEventListener('click', function(){
+            let container = document.getElementById('sb-container')
+            container.appendChild(squarediv)
+        })
+        let removechild = document.getElementById('remove')
+        removechild.addEventListener('click', function(){
+            let container = document.getElementById('sb-container')
+            container.removeChild(squarediv)
+        })
+    </script>
+</body>
+</html>
