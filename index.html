@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<body id = "text">
+    <!-- This is a comment node! -->
+    <h1>The Element Object</h1>
+    <h2>The childNodes Property</h2>
+    <p>Whitespace between elements are text nodes. Comments are also nodes.</p>
+    <p id = "demo">The body element's child nodes are:</p>
+    <script>
+        let collection = document.body.childNodes;
+        let text = document.getElementById("demo").innerHTML;
+        text = text + "<br>";
+        for (let i = 0; i < collection.length; i++) {
+            text += collection[i].nodeName + "<br>";
+        }
+        document.getElementById("demo").innerHTML = text;
+</script>  
+</body>
+
+</html>
