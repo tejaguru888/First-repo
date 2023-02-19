@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Github Issue</title>
+</head>
+<body>
+    <div id="issueList">
+        <h2 id="pageNumber">Page Number 1</h2>
+        <ol></ol>
+        <button id="previous">Previous</button>
+        <button id="next">Next</button>
+    </div>
+    <script>
+        const issuesPerPage = 5;
+        let currentPageNumber = 1;
+
+        function fetchIssues(pageNumber) {
+            fetch(`https://api.github.com/repositories/1296269/issues?page=${pageNumber}&per_page=${issuesPerPage}`)
+            .then(res => res.json())
+            .then(data => {
+                const issueList = document.querySelector('#issueList ol');
+                issueList.innerHTML = '';
+                data.forEach(issue => {
+                    const issueName = issue.title;
+                    const issueItem = document.createElement('li');
+                    issueItem.textContent = issueName;
+                    issueList.appendChild(issueItem);
+                });
+                const pageNumberHeading = document.querySelector('#pageNumber');
+                pageNumberHeading.textContent = `Page Number ${pageNumber}`;
+            })
+            .catch(error => console.log(error));
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchIssues(currentPageNumber);
+            const nextBtn = document.querySelector('#next');
+            const previsousBtn = document.querySelector('#previous');
+
+            nextBtn.addEventListener('click' , () => {
+                currentPageNumber++;
+                fetchIssues(currentPageNumber);
+            });
+
+            previsousBtn.addEventListener('click', () => {
+                if(currentPageNumber > 1) {
+                    currentPageNumber--;
+                fetchIssues(currentPageNumber);
+                }
+            });
+        })
+
+        
+    </script>
+</body>
+</html>
